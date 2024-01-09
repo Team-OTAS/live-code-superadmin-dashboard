@@ -1,0 +1,18 @@
+/* Poppin */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+/* Garet */
+@import url("https://fonts.cdnfonts.com/css/garet");
+.navTitle {
+  text-align: center;
+  font-weight: bold;
+  font-family: "Garet", cursive;
+  font-size: 36px;
+  word-wrap: break-word;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.btnText {
+  padding-left: 10px;
+  font-family: "Poppins", sans-serif;
+}/*# sourceMappingURL=navbar.css.map */

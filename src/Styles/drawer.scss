@@ -1,0 +1,21 @@
+@import "./../Variables/variables.scss";
+
+.DrawContainer{
+  width: 280px;
+  height: 352px;
+  border-radius: 18px;
+  border: 1px solid $textheaderColor;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.80);
+  padding: 15px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.btnText {
+  padding-left: 10px;
+  font-family: $textFont;
+}

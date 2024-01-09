@@ -1,0 +1,30 @@
+@import "./../Variables/variables.scss";
+
+.dashboardContainer{
+    width: 100vw;
+    padding: 20px;
+    display: flex;
+    // justify-content: space-between;
+}
+
+.btnText {
+    padding-left: 10px;
+    font-family: $textFont;
+  }
+
+.dashboardContent{
+    width: 75vw;
+    padding: 0 20px;
+}  
+
+.barContainer{
+    width: inherit;
+    display: flex;
+    padding:0 20px ;
+}  
+
+.MuiDataGrid-root .MuiDataGrid-cell {
+    font-size: 18px; /* Adjust the font size as needed */
+    font-family: $textFont;
+    font-weight: 600;
+  }
