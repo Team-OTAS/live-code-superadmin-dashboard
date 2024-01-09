@@ -1,31 +1,5 @@
-/* Poppin */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
-/* Garet */
-@import url("https://fonts.cdnfonts.com/css/garet");
 .dashboardContainer {
   width: 100vw;
   padding: 20px;
   display: flex;
-}
-
-.btnText {
-  padding-left: 10px;
-  font-family: "Poppins", sans-serif;
-}
-
-.dashboardContent {
-  width: 75vw;
-  padding: 0 20px;
-}
-
-.barContainer {
-  width: inherit;
-  display: flex;
-  padding: 0 20px;
-}
-
-.MuiDataGrid-root .MuiDataGrid-cell {
-  font-size: 18px; /* Adjust the font size as needed */
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-}/*# sourceMappingURL=dashborad.css.map */
+} /*# sourceMappingURL=dashborad.css.map */
