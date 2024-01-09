@@ -1,10 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import AdminDashBoard from "./Views/AdminDashBoard";
 
 function App() {
   return (
     <div className="App">
-      <h1>Super Admin Dashboard</h1>
+      <AdminDashBoard />
     </div>
   );
 }
