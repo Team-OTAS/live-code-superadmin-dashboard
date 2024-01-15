@@ -1,30 +1,50 @@
 @import "./../Variables/variables.scss";
 
-.dashboardContainer{
-    width: 100vw;
-    padding: 20px;
-    display: flex;
-    // justify-content: space-between;
+body {
+  overflow: hidden;
+}
+
+.dashboardContainer {
+  width: 97vw;
+  padding: 20px;
+  display: flex;
+  // justify-content: space-between;
 }
 
 .btnText {
-    padding-left: 10px;
-    font-family: $textFont;
-  }
+  padding-left: 10px;
+  font-family: $textFont;
+}
 
-.dashboardContent{
-    width: 75vw;
-    padding: 0 20px;
-}  
+.dashboardContent {
+  width: 75vw;
+  padding: 0 20px;
+}
 
-.barContainer{
-    width: inherit;
-    display: flex;
-    padding:0 20px ;
-}  
+.barContainer {
+  width: inherit;
+  display: flex;
+  padding: 0 20px;
+}
+
+.MuiDataGrid-columnHeaders .MuiCheckbox-root {
+  border-radius: 0;
+  color: white;
+}
+
+.MuiDataGrid-columnHeaders .MuiCheckbox-root.Mui-checked {
+  color: white;
+}
 
 .MuiDataGrid-root .MuiDataGrid-cell {
-    font-size: 18px; /* Adjust the font size as needed */
-    font-family: $textFont;
-    font-weight: 600;
-  }
+  font-size: 18px; /* Adjust the font size as needed */
+  font-family: $textFont;
+  font-weight: 600;
+}
+
+.MuiDataGrid-columnHeaders {
+  background-color: black;
+  color: white;
+  font-size: 18px; /* Adjust the font size as needed */
+  font-family: $textFont;
+}

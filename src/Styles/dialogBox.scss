@@ -1,0 +1,58 @@
+@import "./../Variables/variables.scss";
+.dialog-box {
+  width: 570px;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.8);
+}
+
+.formHeader {
+  margin-bottom: 30px;
+  font-family: $textFont;
+  color: $textheaderColor;
+}
+
+.package-form-container {
+  width: 500px;
+  border: 1px solid black;
+  padding: 10px 20px 30px 20px;
+  border-radius: 10px;
+}
+
+.package {
+  display: flex;
+}
+
+.btnContainer {
+  text-align: center;
+}
+
+.input-field-label {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+}
+
+.textheader {
+  text-align: center;
+  color: $textheaderColor;
+  font-size: 24px;
+  font-family: $textFont;
+  font-weight: bold;
+  word-wrap: break-word;
+  // margin-top: -10px;
+}
+
+.textbody {
+  text-align: center;
+  color: $textheaderColor;
+  font-size: 15px;
+  font-family: $textFont;
+  margin-top: -25px;
+}
+
+.clicked {
+  background-color: black;
+}
+
+.notClicked {
+  background-color: red;
+}
