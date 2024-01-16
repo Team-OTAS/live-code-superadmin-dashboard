@@ -16,6 +16,7 @@ import "./../Styles/dashborad.css";
 import CreateShop from "../Components/CreateShop";
 import DataTable from "../Components/DataTable";
 import CreateComplete from "../Components/CompleteCreateShop";
+import AlertMessage from "../Components/AlertMessage";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -29,7 +30,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 export default function AdminDashBoard() {
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.modal);
-  console.log(isModalOpen.modalB);
+  const alert = useSelector((state) => state.alert);
+  console.log("alert", alert.isOpen);
+  console.log(isModalOpen.modalA);
 
   const handleClickOpen = () => {
     dispatch(openModalA());
@@ -81,8 +84,9 @@ export default function AdminDashBoard() {
               <span className="btnText">Add New Shop</span>
             </Button>
           </div>
-          {/* <Table /> */}
           <DataTable />
+          {alert.isOpen && <AlertMessage />}
+          {}
           <BootstrapDialog
             onClose={handleClose}
             aria-labelledby="customized-dialog-title"

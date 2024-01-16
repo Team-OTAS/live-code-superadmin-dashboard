@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { closeModalA, closeModalB } from "./../redux/feature/modalSlice";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { Box, Button } from "@mui/material";
+import { Alert, Box, Button } from "@mui/material";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
 import "./../Styles/dialogBox.css";
@@ -13,6 +13,7 @@ export default function CreateComplete() {
   const nameref = useRef();
   const passwordref = useRef();
   const resData = useSelector((state) => state.ramdomUser);
+  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
     nameref.current.value = resData.data.user_name;
@@ -23,19 +24,37 @@ export default function CreateComplete() {
     const credentialsText = `Username: ${nameref.current.value}\nPassword: ${passwordref.current.value}`;
     try {
       await navigator.clipboard.writeText(credentialsText);
-      dispatch(closeModalB());
-      dispatch(closeModalA());
-      alert("Text copied to clipboard!");
+      setAlert(true);
+      setTimeout(() => {
+        dispatch(closeModalB());
+        dispatch(closeModalA());
+      }, 1500);
     } catch (err) {
       console.error("Unable to copy to clipboard", err);
       dispatch(closeModalB());
       dispatch(closeModalA());
-      alert("TUnable to copy to clipboard");
+      alert("Unable to copy to clipboard");
     }
   };
 
   return (
     <>
+      {alert && (
+        <Alert
+          variant="filled"
+          severity="success"
+          sx={{
+            width: "50%",
+            margin: "auto",
+            position: "absolute",
+            top: "42%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          Copied!
+        </Alert>
+      )}
       <Box
         sx={{
           p: 5,
