@@ -24,8 +24,8 @@ body {
 
 .barContainer {
   width: inherit;
-  display: flex;
-  padding: 0 20px;
+  display: block;
+  text-align: right;
 }
 
 .MuiDataGrid-columnHeaders .MuiCheckbox-root {

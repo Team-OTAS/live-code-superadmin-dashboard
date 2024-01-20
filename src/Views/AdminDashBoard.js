@@ -47,7 +47,7 @@ export default function AdminDashBoard() {
         <Drawer />
         <div className="dashboardContent">
           <div className="barContainer">
-            <Paper
+            {/* <Paper
               component="form"
               sx={{
                 p: "2px 4px",
@@ -73,7 +73,7 @@ export default function AdminDashBoard() {
             >
               <TuneOutlinedIcon />
               <span className="btnText">Life Span Filter</span>
-            </Button>
+            </Button> */}
             <Button
               size="large"
               color="primary"

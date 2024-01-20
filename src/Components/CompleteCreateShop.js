@@ -7,6 +7,8 @@ import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
 import "./../Styles/dialogBox.css";
 import { useDispatch, useSelector } from "react-redux";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function CreateComplete() {
   const dispatch = useDispatch();
@@ -35,6 +37,10 @@ export default function CreateComplete() {
       dispatch(closeModalA());
       alert("Unable to copy to clipboard");
     }
+  };
+
+  const handleClose = () => {
+    dispatch(closeModalA());
   };
 
   return (
@@ -72,6 +78,18 @@ export default function CreateComplete() {
           alignItems="center"
           sx={{ py: { xs: 3, sm: 0 } }}
         >
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              right: 10,
+              top: 10,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
           <Grid item xs={2}>
             <p className="textheader">User Shop Has Been Created!</p>
           </Grid>
@@ -115,6 +133,9 @@ export default function CreateComplete() {
                   color="primary"
                   size="large"
                   inputRef={nameref}
+                  InputProps={{
+                    readOnly: true,
+                  }}
                 />
               </div>
               <div className="input-field">
@@ -129,6 +150,9 @@ export default function CreateComplete() {
                   color="primary"
                   size="large"
                   inputRef={passwordref}
+                  InputProps={{
+                    readOnly: true,
+                  }}
                 />
               </div>
             </Box>

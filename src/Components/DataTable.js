@@ -1,19 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarFilterButton,
+} from "@mui/x-data-grid";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../redux/feature/apiSlice";
 import "./../Styles/dashborad.css";
+import { Button } from "@mui/material";
+import PreviewOutlinedIcon from "@mui/icons-material/PreviewOutlined";
+import { useDispatch, useSelector } from "react-redux";
+import CustomNoRowsOverlay from "./NoRowOverlay";
+
+function CustomToolbar() {
+  return (
+    <GridToolbarContainer>
+      <GridToolbarFilterButton />
+    </GridToolbarContainer>
+  );
+}
 
 const columns = [
-  { field: "id", headerName: "ID", width: 20 },
+  { field: "no", headerName: "No", width: 20 },
   { field: "name", headerName: "Shop Name", width: 200 },
-  { field: "username", headerName: "User Name", width: 150 },
-  { field: "address", headerName: "Account", width: 100 },
+  { field: "id", headerName: "User Name", width: 150 },
   {
-    field: "email",
+    field: "subid",
+    headerName: "Account",
+    width: 100,
+    valueGetter: (params) => params.row.subscription_plan.id,
+  },
+  {
+    field: "subname",
     headerName: "Package Plan",
     width: 200,
+    valueGetter: (params) => params.row.subscription_plan.name,
     renderCell: (cellValues) => {
       return (
         <div
@@ -34,7 +54,7 @@ const columns = [
   },
 
   {
-    field: "phone",
+    field: "expire_at",
     headerName: "Expired Date",
     width: 200,
     renderCell: (cellValues) => {
@@ -43,39 +63,75 @@ const columns = [
           style={{
             color: "#000",
             background: "#73FF1D",
-            padding: "15px 10px",
+            padding: "10px 20px",
             borderRadius: "8px",
-            fontSize: 18,
+            fontSize: 12,
             width: "100%",
-            textAlign: "left",
+            textAlign: "center",
             overflow: "hidden",
           }}
         >
-          {cellValues.value}
+          {new Date(cellValues.value).toLocaleDateString()}
+          <br />(
+          {Math.floor(
+            (new Date(cellValues.value) - new Date()) / (1000 * 60 * 60 * 24)
+          )}{" "}
+          <span>Days Left</span>)
         </div>
       );
     },
   },
+  {
+    field: "actions",
+    headerName: "Actions",
+    width: 150,
+    renderCell: (params) => (
+      <Button
+        sx={{
+          background: "#4d3f3f",
+          color: "white",
+          padding: "10px 20px",
+          borderRadius: "10px 18px 10px 18px",
+        }}
+        variant="filled"
+        onClick={() => handleButtonClick(params.row.id)}
+      >
+        <PreviewOutlinedIcon sx={{ marginRight: "5px" }} />
+        View Shop
+      </Button>
+    ),
+  },
 ];
 
-const DataTable = () => {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.data.entities);
-  const status = useSelector((state) => state.data.status);
-  const error = useSelector((state) => state.data.error);
-  const [tableData, setTableData] = useState([]);
+const handleButtonClick = (id) => {
+  // Do something with the id, e.g., show in an alert
+  alert(`Clicked on ID ${id}`);
+};
 
-  const [rows, setRows] = useState(tableData);
-  const [deletedRows, setDeletedRows] = useState([]);
+const DataTable = () => {
+  const isModalOpen = useSelector((state) => state.modal);
+  console.log("modal", isModalOpen.modalA);
+  const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((data) => data.json())
-      .then((data) => setTableData(data));
-
-    dispatch(fetchData());
-    // setTableData(data);
-  }, [dispatch]);
+    // Fetch API data
+    axios
+      .get("/shops")
+      .then((response) => {
+        // Handle the API response here
+        const data = response.data;
+        const tabledata = data.data.map((item, index) => ({
+          no: index + 1,
+          ...item,
+        }));
+        setApiData(tabledata);
+        console.log("Work");
+      })
+      .catch((error) => {
+        console.error("Error fetching API data:", error);
+      });
+  }, [isModalOpen.modalA]);
+  console.log(apiData);
 
   const handleRowClick = (params) => {
     // Access the clicked row data using params.row
@@ -83,19 +139,16 @@ const DataTable = () => {
     // You can perform additional actions based on the clicked row data
   };
 
-  // console.log(tableData);
-  // console.log(data.data);
-
   return (
-    <div style={{ height: 700, width: "100%" }}>
+    <div style={{ height: 450, width: "100%" }}>
       <DataGrid
-        rows={tableData}
+        rows={apiData}
         columns={columns}
         pageSize={12}
         checkboxSelection
         onRowClick={handleRowClick}
         components={{
-          Toolbar: GridToolbar,
+          Toolbar: CustomToolbar,
         }}
         // onSelectionModelChange={({ selectionModel }) => {
         //   const rowIds = selectionModel.map((rowId) =>
