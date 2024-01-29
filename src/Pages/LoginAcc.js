@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import LiveCodeLogo from "./../assets/images/logo.png";
 import TextField from "@mui/material/TextField";
@@ -6,8 +6,32 @@ import { Box, Button } from "@mui/material";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
 import "./../Styles/auth.css";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginAcc() {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginsuccessful, setLoginsuccessful] = useState(false);
+
+  const handleLogin = () =>{
+    const presetUsername = 'Digital Saw';
+    const presetPassword = 'Ds1234';
+
+    if(username === presetUsername && password === presetPassword){
+        console.log("Login successful");
+        setLoginsuccessful(true);
+      }else{
+        console.log('Incorrect Username or Password');
+    }
+  };
+
+  const navigate = useNavigate();
+
+  if(loginsuccessful){
+    navigate('/admindashboard');
+  };
+
   return (
     <>
       <Box
@@ -64,6 +88,8 @@ export default function LoginAcc() {
               <div className="input-field">
                 <TextField
                   id="outlined-error-helper-text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   label={
                     <div className="input-field-label">
                       <Person2OutlinedIcon color="primary" />
@@ -77,6 +103,8 @@ export default function LoginAcc() {
               <div className="input-field">
                 <TextField
                   id="outlined-error-helper-text"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   label={
                     <div className="input-field-label">
                       <PasswordOutlinedIcon color="primary" />
@@ -91,7 +119,7 @@ export default function LoginAcc() {
           </Grid>
           {/* ---------Form End  --------------------------------------------------------*/}
           <Grid item xs={2}>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={handleLogin}>
               Login To LiveCode
             </Button>
           </Grid>

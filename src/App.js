@@ -1,6 +1,9 @@
-import AdminDashBoard from "./Views/AdminDashBoard";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material/styles";
+import { createBrowserRouter, Route, Routes,RouterProvider,BrowserRouter } from "react-router-dom";
+
+import AdminDashBoard from "./Pages/AdminDashBoard";
+import LoginAcc from "./Pages/LoginAcc";
 
 const theme = createTheme({
   palette: {
@@ -23,11 +26,16 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+   <BrowserRouter>
+     <ThemeProvider theme={theme}>
       <div className="App">
-        <AdminDashBoard />
+        <Routes>
+          <Route path="/"  element={<LoginAcc />} />
+          <Route path="/admindashboard" element={<AdminDashBoard />} />
+        </Routes>
       </div>
     </ThemeProvider>
+   </BrowserRouter>
   );
 }
 
