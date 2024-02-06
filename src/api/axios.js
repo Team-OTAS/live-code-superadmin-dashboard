@@ -1,12 +1,12 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:8000/api";
+const BASE_URL = "http://128.199.246.237/live-code-api/api";
 
 // let usertoken = localStorage.getItem("token");
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.headers.common["Accept"] = "application/json";
 axios.defaults.headers.common[
   "Authorization"
-] = `Bearer 2|LURBXEc8WnzA7nSc2db4I2tGZox6iZTAEjXDmiN601538277`;
+] = `Bearer 1|ohwUOnGRpQdmpSaIRAGi9XxouxvwFB5tYSen19um30ac2918`;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
   DataGrid,
+  GridToolbarColumnsButton,
   GridToolbarContainer,
   GridToolbarFilterButton,
 } from "@mui/x-data-grid";
 import axios from "axios";
 import "./../Styles/dashborad.css";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import PreviewOutlinedIcon from "@mui/icons-material/PreviewOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import CustomNoRowsOverlay from "./NoRowOverlay";
@@ -14,6 +15,7 @@ import CustomNoRowsOverlay from "./NoRowOverlay";
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
+      <GridToolbarColumnsButton />
       <GridToolbarFilterButton />
     </GridToolbarContainer>
   );
@@ -22,36 +24,8 @@ function CustomToolbar() {
 const columns = [
   { field: "no", headerName: "No", width: 20 },
   { field: "name", headerName: "Shop Name", width: 200 },
-  { field: "id", headerName: "User Name", width: 150 },
-  {
-    field: "subid",
-    headerName: "Account",
-    width: 100,
-    valueGetter: (params) => params.row.subscription_plan.id,
-  },
-  {
-    field: "subname",
-    headerName: "Package Plan",
-    width: 200,
-    valueGetter: (params) => params.row.subscription_plan.name,
-    renderCell: (cellValues) => {
-      return (
-        <div
-          style={{
-            color: "white",
-            background: "#370FC8",
-            padding: "15px 10px",
-            borderRadius: "8px",
-            fontSize: 18,
-            width: "100%",
-            textAlign: "left",
-          }}
-        >
-          {cellValues.value}
-        </div>
-      );
-    },
-  },
+  { field: "user_name", headerName: "User Name", width: 150 },
+  { field: "phone", headerName: "Contact Num", width: 200 },
 
   {
     field: "expire_at",
@@ -59,15 +33,20 @@ const columns = [
     width: 200,
     renderCell: (cellValues) => {
       return (
-        <div
-          style={{
-            color: "#000",
-            background: "#73FF1D",
+        <Box
+          sx={{
+            color:
+              Math.floor(
+                (new Date(cellValues.value) - new Date()) /
+                  (1000 * 60 * 60 * 24)
+              ) > 100
+                ? "#354E8E"
+                : "#E81609",
             padding: "10px 20px",
             borderRadius: "8px",
             fontSize: 12,
             width: "100%",
-            textAlign: "center",
+            textAlign: "left",
             overflow: "hidden",
           }}
         >
@@ -77,7 +56,7 @@ const columns = [
             (new Date(cellValues.value) - new Date()) / (1000 * 60 * 60 * 24)
           )}{" "}
           <span>Days Left</span>)
-        </div>
+        </Box>
       );
     },
   },
@@ -88,10 +67,10 @@ const columns = [
     renderCell: (params) => (
       <Button
         sx={{
-          background: "#4d3f3f",
-          color: "white",
+          background: "#354E8E",
+          color: "#fff",
           padding: "10px 20px",
-          borderRadius: "10px 18px 10px 18px",
+          borderRadius: "10px",
         }}
         variant="filled"
         onClick={() => handleButtonClick(params.row.id)}
@@ -140,7 +119,7 @@ const DataTable = () => {
   };
 
   return (
-    <div style={{ height: 450, width: "100%" }}>
+    <div style={{ height: 500, width: "100%" }}>
       <DataGrid
         rows={apiData}
         columns={columns}
