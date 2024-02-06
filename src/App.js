@@ -5,6 +5,8 @@ import { createBrowserRouter, Route, Routes,RouterProvider,BrowserRouter } from 
 import AdminDashBoard from "./Pages/AdminDashBoard";
 import LoginAcc from "./Pages/LoginAcc";
 
+import fetchXsrfToken from "./api/auth";
+
 const theme = createTheme({
   palette: {
     primary: {

@@ -8,29 +8,37 @@ import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
 import "./../Styles/auth.css";
 import { useNavigate } from "react-router-dom";
 
+import fetchXsrfToken from "../api/auth";
+import axios from "axios";
 export default function LoginAcc() {
+  const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
+  const [user_name, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginsuccessful, setLoginsuccessful] = useState(false);
 
-  const handleLogin = () =>{
-    const presetUsername = 'Digital Saw';
-    const presetPassword = 'Ds1234';
+  const handleLogin = async() =>{
+    const xsrfToken = await fetchXsrfToken();
+    console.log('XSRF Token from auth.js', xsrfToken);
+    const response = await axios.post('http://128.199.246.237/live-code-api/api/auth/login', {
+      user_name,
+      password
+    },{
+      withCredentials: true,
+      headers: {
+        'X-XSRF-TOKEN': xsrfToken,
+      }
+    });
+    
+    if(response.status === 200){
 
-    if(username === presetUsername && password === presetPassword){
-        console.log("Login successful");
-        setLoginsuccessful(true);
-      }else{
-        console.log('Incorrect Username or Password');
+      navigate('/admindashboard');
+      // const authToken = response.data.data.token;
     }
   };
 
-  const navigate = useNavigate();
 
-  if(loginsuccessful){
-    navigate('/admindashboard');
-  };
+  
 
   return (
     <>
@@ -88,7 +96,7 @@ export default function LoginAcc() {
               <div className="input-field">
                 <TextField
                   id="outlined-error-helper-text"
-                  value={username}
+                  value={user_name}
                   onChange={(e) => setUsername(e.target.value)}
                   label={
                     <div className="input-field-label">
