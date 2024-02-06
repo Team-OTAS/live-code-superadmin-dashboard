@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material/styles";
 import { createBrowserRouter, Route, Routes,RouterProvider,BrowserRouter } from "react-router-dom";
 
-import AdminDashBoard from "./Pages/AdminDashBoard";
+import AdminDashBoard from "./Views/AdminDashBoard";
 import LoginAcc from "./Pages/LoginAcc";
 
 import fetchXsrfToken from "./api/auth";
