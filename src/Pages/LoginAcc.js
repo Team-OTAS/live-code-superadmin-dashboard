@@ -31,7 +31,8 @@ export default function LoginAcc() {
     });
     
     if(response.status === 200){
-
+      const authToken = response.data.data.token;
+      localStorage.setItem('authToken', authToken);
       navigate('/admindashboard');
       // const authToken = response.data.data.token;
     }
