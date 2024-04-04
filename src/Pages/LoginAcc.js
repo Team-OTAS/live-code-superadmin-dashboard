@@ -9,37 +9,38 @@ import "./../Styles/auth.css";
 import { useNavigate } from "react-router-dom";
 
 import fetchXsrfToken from "../api/auth";
-import axios from "axios";
+import axios from "./../api/axios";
 export default function LoginAcc() {
   const navigate = useNavigate();
 
-  const [user_name, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [user_name, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loginsuccessful, setLoginsuccessful] = useState(false);
 
-  const handleLogin = async() =>{
+  const handleLogin = async () => {
     const xsrfToken = await fetchXsrfToken();
-    console.log('XSRF Token from auth.js', xsrfToken);
-    const response = await axios.post('http://128.199.246.237/live-code-api/api/auth/login', {
-      user_name,
-      password
-    },{
-      withCredentials: true,
-      headers: {
-        'X-XSRF-TOKEN': xsrfToken,
+    console.log("XSRF Token from auth.js", xsrfToken);
+    const response = await axios.post(
+      "/api/auth/login",
+      {
+        user_name,
+        password,
+      },
+      {
+        withCredentials: true,
+        headers: {
+          "X-XSRF-TOKEN": xsrfToken,
+        },
       }
-    });
-    
-    if(response.status === 200){
+    );
+
+    if (response.status === 200) {
       const authToken = response.data.data.token;
-      localStorage.setItem('token', authToken);
-      navigate('/admindashboard');
+      localStorage.setItem("token", authToken);
+      navigate("/admindashboard");
       // const authToken = response.data.data.token;
     }
   };
-
-
-  
 
   return (
     <>
@@ -76,11 +77,9 @@ export default function LoginAcc() {
             </Box>
             <Box component="div" sx={{ display: { xs: "block", sm: "none" } }}>
               <p className="textbody">
-                <p className="textbody">
-                  Login into live code and manage <br /> your live sales with{" "}
-                  <br /> easy-peasy features to create <br />
-                  endless profits without much effort..
-                </p>
+                Login into live code and manage <br /> your live sales with{" "}
+                <br /> easy-peasy features to create <br />
+                endless profits without much effort..
               </p>
             </Box>
           </Grid>

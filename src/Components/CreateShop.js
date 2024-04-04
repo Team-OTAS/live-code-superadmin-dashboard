@@ -48,7 +48,7 @@ export default function CreateShop() {
 
   const submitData = async (data) => {
     try {
-      const res = await axios.post("/shops", data);
+      const res = await axios.post("/api/shops", data);
       if (res) {
         dispatch(openModalB());
         dispatch(resdata(res.data.data));

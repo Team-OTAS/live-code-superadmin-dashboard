@@ -5,7 +5,7 @@ import {
   GridToolbarContainer,
   GridToolbarFilterButton,
 } from "@mui/x-data-grid";
-import axios from "axios";
+import axios from "./../api/axios";
 import "./../Styles/dashborad.css";
 import { Box, Button } from "@mui/material";
 import PreviewOutlinedIcon from "@mui/icons-material/PreviewOutlined";
@@ -95,7 +95,7 @@ const DataTable = () => {
   useEffect(() => {
     // Fetch API data
     axios
-      .get("/shops")
+      .get("/api/shops")
       .then((response) => {
         // Handle the API response here
         const data = response.data;
