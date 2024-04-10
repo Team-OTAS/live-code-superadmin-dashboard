@@ -9,8 +9,7 @@ import axios from "./../api/axios";
 import "./../Styles/dashborad.css";
 import { Box, Button } from "@mui/material";
 import PreviewOutlinedIcon from "@mui/icons-material/PreviewOutlined";
-import { useDispatch, useSelector } from "react-redux";
-import CustomNoRowsOverlay from "./NoRowOverlay";
+import { useSelector } from "react-redux";
 
 function CustomToolbar() {
   return (
@@ -71,6 +70,10 @@ const columns = [
           color: "#fff",
           padding: "10px 20px",
           borderRadius: "10px",
+          "&:hover": {
+            backgroundColor: "#4D3F3F",
+            color: "#fff",
+          },
         }}
         variant="filled"
         onClick={() => handleButtonClick(params.row.id)}
@@ -112,11 +115,11 @@ const DataTable = () => {
   }, [isModalOpen.modalA]);
   console.log(apiData);
 
-  const handleRowClick = (params) => {
-    // Access the clicked row data using params.row
-    console.log("Row clicked:", params.row);
-    // You can perform additional actions based on the clicked row data
-  };
+  // const handleRowClick = (params) => {
+  //   // Access the clicked row data using params.row
+  //   console.log("Row clicked:", params.row);
+  //   // You can perform additional actions based on the clicked row data
+  // };
 
   return (
     <div style={{ height: 500, width: "100%" }}>
@@ -125,7 +128,8 @@ const DataTable = () => {
         columns={columns}
         pageSize={12}
         checkboxSelection
-        onRowClick={handleRowClick}
+        // onRowClick={handleRowClick}
+        onCellClick={false}
         components={{
           Toolbar: CustomToolbar,
         }}
