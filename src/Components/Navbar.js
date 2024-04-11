@@ -17,10 +17,10 @@ export default function Navbar() {
           <Typography component="div" sx={{ flexGrow: 1 }}>
             <p className="navTitle">Shop Accounts Management</p>
           </Typography>
-          <Button size="large" color="primary" variant="contained">
+          {/* <Button size="large" color="primary" variant="contained">
             <BugReportOutlinedIcon />
             <span className="btnText">Bug Report To Developer</span>
-          </Button>
+          </Button> */}
         </Toolbar>
       </AppBar>
     </Box>
