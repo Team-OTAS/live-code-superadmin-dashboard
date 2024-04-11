@@ -3,7 +3,8 @@ import {
   DataGrid,
   GridToolbarColumnsButton,
   GridToolbarContainer,
-  GridToolbarFilterButton,
+  GridToolbarQuickFilter,
+  // GridToolbarFilterButton,
 } from "@mui/x-data-grid";
 import axios from "./../api/axios";
 import "./../Styles/dashborad.css";
@@ -13,9 +14,12 @@ import { useSelector } from "react-redux";
 
 function CustomToolbar() {
   return (
-    <GridToolbarContainer>
+    <GridToolbarContainer
+      sx={{ display: "flex", justifyContent: "space-between" }}
+    >
       <GridToolbarColumnsButton />
-      <GridToolbarFilterButton />
+      <GridToolbarQuickFilter />
+      {/* <GridToolbarFilterButton /> */}
     </GridToolbarContainer>
   );
 }
