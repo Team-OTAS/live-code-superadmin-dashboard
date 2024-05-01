@@ -1,12 +1,13 @@
 @import "./../Variables/variables.scss";
 
 .DrawContainer {
-  width: 280px;
-  height: 352px;
+  width: 230px;
+  height: 150px;
   border-radius: 18px;
-  border: 1px solid $textheaderColor;
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.8);
-  padding: 15px 0;
+  // padding: 20px 0;
+  // border: 1px solid $textheaderColor;
+  // box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  padding: 0px 0;
 
   display: flex;
   justify-content: space-between;
@@ -15,6 +16,5 @@
 }
 
 .btnText {
-  padding-left: 10px;
   font-family: $textFont;
 }

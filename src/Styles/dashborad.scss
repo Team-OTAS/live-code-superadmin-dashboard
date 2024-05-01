@@ -1,13 +1,15 @@
 @import "./../Variables/variables.scss";
 
 body {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .dashboardContainer {
-  width: 97vw;
+  width: 100vw;
+  min-height: 100vh;
   padding: 20px;
   display: flex;
+  background-color: #f2f3f7;
   // justify-content: space-between;
 }
 
@@ -17,7 +19,7 @@ body {
 }
 
 .dashboardContent {
-  width: 75vw;
+  width: 80vw;
   padding: 0 20px;
 }
 
@@ -39,7 +41,7 @@ body {
 .MuiDataGrid-root .MuiDataGrid-cell {
   font-size: 18px; /* Adjust the font size as needed */
   font-family: $textFont;
-  font-weight: 600;
+  // font-weight: 600;
 }
 
 .MuiDataGrid-columnHeaders {

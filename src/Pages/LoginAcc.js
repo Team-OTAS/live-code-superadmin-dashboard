@@ -7,7 +7,7 @@ import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
 import "./../Styles/auth.css";
 import { useNavigate } from "react-router-dom";
-
+import { setAuthToken } from "./../api/axios";
 import fetchXsrfToken from "../api/auth";
 import axios from "./../api/axios";
 export default function LoginAcc() {
@@ -15,7 +15,6 @@ export default function LoginAcc() {
 
   const [user_name, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginsuccessful, setLoginsuccessful] = useState(false);
 
   const handleLogin = async () => {
     const xsrfToken = await fetchXsrfToken();
@@ -36,6 +35,7 @@ export default function LoginAcc() {
 
     if (response.status === 200) {
       const authToken = response.data.data.token;
+      setAuthToken(authToken);
       localStorage.setItem("token", authToken);
       navigate("/admindashboard");
       // const authToken = response.data.data.token;

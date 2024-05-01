@@ -8,7 +8,7 @@ const modalSlice = createSlice({
       isOpen: false,
     },
     modalB: {
-      isOpen: true,
+      isOpen: false,
     },
   },
   reducers: {
@@ -19,10 +19,10 @@ const modalSlice = createSlice({
       state.modalA.isOpen = false;
     },
     openModalB: (state, action) => {
-      state.modalB.isOpen = false;
+      state.modalB.isOpen = true;
     },
     closeModalB: (state, action) => {
-      state.modalB.isOpen = true;
+      state.modalB.isOpen = false;
     },
   },
 });

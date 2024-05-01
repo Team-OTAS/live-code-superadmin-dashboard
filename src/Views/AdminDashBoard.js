@@ -12,6 +12,9 @@ import CreateShop from "../Components/CreateShop";
 import DataTable from "../Components/DataTable";
 import CreateComplete from "../Components/CompleteCreateShop";
 import AlertMessage from "../Components/AlertMessage";
+import ShopCreate from "../Components/ShopCreate";
+import { Route, Router, Routes } from "react-router-dom";
+import ShopDetails from "../Components/ShopDetails";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -37,50 +40,19 @@ export default function AdminDashBoard() {
   };
   return (
     <div>
-      <Navbar />
       <div className="dashboardContainer">
         <Drawer />
         <div className="dashboardContent">
-          <div className="barContainer">
-            {/* <Paper
-              component="form"
-              sx={{
-                p: "2px 4px",
-                display: "flex",
-                alignItems: "center",
-                width: 400,
-              }}
-            >
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="Search Shop"
-                inputProps={{ "aria-label": "search google maps" }}
-              />
-              <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-                <SearchIcon />
-              </IconButton>
-            </Paper>
-            <Button
-              size="large"
-              color="primary"
-              variant="contained"
-              sx={{ marginX: "10px" }}
-            >
-              <TuneOutlinedIcon />
-              <span className="btnText">Life Span Filter</span>
-            </Button> */}
-            <Button
-              size="large"
-              color="primary"
-              variant="contained"
-              onClick={handleClickOpen}
-            >
-              <PersonAddAlt1OutlinedIcon />
-              <span className="btnText">Add New Shop</span>
-            </Button>
-          </div>
-          <DataTable />
-          {alert.isOpen && <AlertMessage />}
+          <Navbar />
+
+          <Routes>
+            <Route path="/admindashboard" element={<DataTable />} />
+            <Route path="/create" element={<ShopCreate />} />
+            <Route path="/details/:id" element={<ShopDetails />} />
+          </Routes>
+
+          {/* <ShopCreate /> */}
+          {/* {alert.isOpen && <AlertMessage />}
           {}
           <BootstrapDialog
             onClose={handleClose}
@@ -88,7 +60,7 @@ export default function AdminDashBoard() {
             open={isModalOpen.modalA.isOpen}
           >
             {isModalOpen.modalB.isOpen ? <CreateShop /> : <CreateComplete />}
-          </BootstrapDialog>
+          </BootstrapDialog> */}
         </div>
       </div>
     </div>

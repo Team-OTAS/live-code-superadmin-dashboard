@@ -9,8 +9,11 @@ import {
 import axios from "./../api/axios";
 import "./../Styles/dashborad.css";
 import { Box, Button } from "@mui/material";
-import PreviewOutlinedIcon from "@mui/icons-material/PreviewOutlined";
+// import PreviewOutlinedIcon from "@mui/icons-material/PreviewOutlined";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
 import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function CustomToolbar() {
   return (
@@ -24,77 +27,80 @@ function CustomToolbar() {
   );
 }
 
-const columns = [
-  { field: "no", headerName: "No", width: 20 },
-  { field: "name", headerName: "Shop Name", width: 200 },
-  { field: "user_name", headerName: "User Name", width: 150 },
-  { field: "phone", headerName: "Contact Num", width: 200 },
-
-  {
-    field: "expire_at",
-    headerName: "Expired Date",
-    width: 200,
-    renderCell: (cellValues) => {
-      return (
-        <Box
-          sx={{
-            color:
-              Math.floor(
-                (new Date(cellValues.value) - new Date()) /
-                  (1000 * 60 * 60 * 24)
-              ) > 100
-                ? "#354E8E"
-                : "#E81609",
-            padding: "10px 20px",
-            borderRadius: "8px",
-            fontSize: 12,
-            width: "100%",
-            textAlign: "left",
-            overflow: "hidden",
-          }}
-        >
-          {new Date(cellValues.value).toLocaleDateString()}
-          <br />(
-          {Math.floor(
-            (new Date(cellValues.value) - new Date()) / (1000 * 60 * 60 * 24)
-          )}{" "}
-          <span>Days Left</span>)
-        </Box>
-      );
-    },
-  },
-  {
-    field: "actions",
-    headerName: "Actions",
-    width: 150,
-    renderCell: (params) => (
-      <Button
-        sx={{
-          background: "#354E8E",
-          color: "#fff",
-          padding: "10px 20px",
-          borderRadius: "10px",
-          "&:hover": {
-            backgroundColor: "#4D3F3F",
-            color: "#fff",
-          },
-        }}
-        variant="filled"
-        onClick={() => handleButtonClick(params.row.id)}
-      >
-        <PreviewOutlinedIcon sx={{ marginRight: "5px" }} />
-        View Shop
-      </Button>
-    ),
-  },
-];
-
-const handleButtonClick = (id) => {
-  // Do something with the id, e.g., show in an alert
-  alert(`Clicked on ID ${id}`);
-};
-
 const DataTable = () => {
+  const navigate = useNavigate();
+
+  const columns = [
+    { field: "no", headerName: "No", width: 50 },
+    { field: "name", headerName: "Shop Name", width: 300 },
+    { field: "user_name", headerName: "User Name", width: 150 },
+    { field: "phone", headerName: "Contact Num", width: 200 },
+
+    {
+      field: "expire_at",
+      headerName: "Expired Date",
+      width: 200,
+      renderCell: (cellValues) => {
+        return (
+          <Box
+            sx={{
+              color:
+                Math.floor(
+                  (new Date(cellValues.value) - new Date()) /
+                    (1000 * 60 * 60 * 24)
+                ) > 100
+                  ? "#354E8E"
+                  : "#E81609",
+              padding: "10px 20px",
+              borderRadius: "8px",
+              fontSize: 12,
+              width: "100%",
+              textAlign: "left",
+              overflow: "hidden",
+            }}
+          >
+            {new Date(cellValues.value).toLocaleDateString()}
+            <br />(
+            {Math.floor(
+              (new Date(cellValues.value) - new Date()) / (1000 * 60 * 60 * 24)
+            )}{" "}
+            <span>Days Left</span>)
+          </Box>
+        );
+      },
+    },
+    {
+      field: "",
+      headerName: "Actions",
+      width: 200,
+      renderCell: (params) => (
+        <Button
+          sx={{
+            background: "#354E8E",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "10px",
+            "&:hover": {
+              backgroundColor: "#fff",
+              color: "#354E8E",
+              fontWeight: "bold",
+              border: "1px solid #354E8E",
+            },
+          }}
+          variant="filled"
+          onClick={() => handleButtonClick(params.row.id)}
+        >
+          <StorefrontIcon sx={{ marginRight: "5px" }} />
+          Shops Details
+        </Button>
+      ),
+    },
+  ];
+
+  const handleButtonClick = (id) => {
+    navigate("/details/" + id);
+  };
+
   const isModalOpen = useSelector((state) => state.modal);
   console.log("modal", isModalOpen.modalA);
   const [apiData, setApiData] = useState([]);
@@ -117,7 +123,7 @@ const DataTable = () => {
         console.error("Error fetching API data:", error);
       });
   }, [isModalOpen.modalA]);
-  console.log(apiData);
+  // console.log(apiData);
 
   // const handleRowClick = (params) => {
   //   // Access the clicked row data using params.row
@@ -126,14 +132,27 @@ const DataTable = () => {
   // };
 
   return (
-    <div style={{ height: 500, width: "100%" }}>
+    <div style={{ height: 450, width: "100%" }}>
+      <div className="barContainer">
+        <NavLink to="/create">
+          <Button
+            size="large"
+            color="primary"
+            variant="contained"
+            // onClick={handleClickOpen}
+          >
+            <PersonAddAlt1OutlinedIcon />
+            <span className="btnText">Add New Shop</span>
+          </Button>
+        </NavLink>
+      </div>
       <DataGrid
         rows={apiData}
         columns={columns}
         pageSize={12}
-        checkboxSelection
+        // checkboxSelection
         // onRowClick={handleRowClick}
-        onCellClick={false}
+        // onCellClick={false}
         components={{
           Toolbar: CustomToolbar,
         }}

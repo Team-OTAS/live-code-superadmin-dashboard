@@ -3,13 +3,15 @@
 /* Garet */
 @import url("https://fonts.cdnfonts.com/css/garet");
 .navTitle {
-  text-align: center;
-  font-weight: bold;
+  text-align: left;
+  font-weight: 500;
   font-family: "Garet", cursive;
   font-size: 36px;
   word-wrap: break-word;
   margin-bottom: 0;
   margin-top: 0;
+  text-decoration: none;
+  color: black;
 }
 
 .btnText {

@@ -1,16 +1,18 @@
 @import "./../Variables/variables.scss";
 
-.navTitle{
-    text-align: center;
-    font-weight: bold;
-    font-family: $inputFont;
-    font-size: 36px;
-    word-wrap: break-word;
-    margin-bottom: 0;
-    margin-top: 0;
+.navTitle {
+  text-align: left;
+  font-weight: 500;
+  font-family: $inputFont;
+  font-size: 36px;
+  word-wrap: break-word;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-decoration: none;
+  color: black;
 }
 
-.btnText{
-    padding-left: 10px;
-    font-family: $textFont;
+.btnText {
+  padding-left: 10px;
+  font-family: $textFont;
 }

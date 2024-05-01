@@ -1,6 +1,12 @@
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material/styles";
-import { createBrowserRouter, Route, Routes,RouterProvider,BrowserRouter } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Route,
+  Routes,
+  RouterProvider,
+  BrowserRouter,
+} from "react-router-dom";
 
 import AdminDashBoard from "./Views/AdminDashBoard";
 import LoginAcc from "./Pages/LoginAcc";
@@ -28,16 +34,16 @@ const theme = createTheme({
 
 function App() {
   return (
-   <BrowserRouter>
-     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Routes>
-          <Route path="/"  element={<LoginAcc />} />
-          <Route path="/admindashboard" element={<AdminDashBoard />} />
-        </Routes>
-      </div>
-    </ThemeProvider>
-   </BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<LoginAcc />} />
+            <Route path="*" element={<AdminDashBoard />} />
+          </Routes>
+        </div>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
