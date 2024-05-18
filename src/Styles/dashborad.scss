@@ -10,6 +10,7 @@ body {
   padding: 20px;
   display: flex;
   background-color: #f2f3f7;
+  // overflow: hidden;
   // justify-content: space-between;
 }
 
@@ -19,7 +20,7 @@ body {
 }
 
 .dashboardContent {
-  width: 80vw;
+  width: 75vw;
   padding: 0 20px;
 }
 
@@ -39,14 +40,24 @@ body {
 }
 
 .MuiDataGrid-root .MuiDataGrid-cell {
-  font-size: 18px; /* Adjust the font size as needed */
+  font-size: 14px; /* Adjust the font size as needed */
   font-family: $textFont;
+  background: white;
+  padding: 20px;
   // font-weight: 600;
 }
 
 .MuiDataGrid-columnHeaders {
   background-color: #354e8e;
   color: white;
-  font-size: 18px; /* Adjust the font size as needed */
+  font-size: 14px; /* Adjust the font size as needed */
   font-family: $textFont;
+}
+
+.color-box {
+  // width: 20px;
+  height: 100%;
+  // background-color: green;
+  padding: 10px 1px;
+  color: transparent;
 }

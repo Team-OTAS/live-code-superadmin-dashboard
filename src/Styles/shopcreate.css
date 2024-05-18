@@ -86,6 +86,13 @@
 .PackegeContainer.active {
   border: 1px solid #4d3f3f;
 }
+.PackegeContainer.active .circles {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  background-color: black;
+  border-radius: 50%;
+}
 
 .create-btn {
   padding: 10px 20px;

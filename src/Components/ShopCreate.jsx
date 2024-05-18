@@ -11,8 +11,10 @@ import Swal from "sweetalert2";
 import Loading from "./Loading";
 import { useDispatch, useSelector } from "react-redux";
 import CreateComplete from "../Components/CompleteCreateShop";
+import { useNavigate } from "react-router-dom";
 
 function ShopCreate() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.modal);
   const [loading, setLoading] = useState(false);
@@ -72,10 +74,11 @@ function ShopCreate() {
 
   return (
     <div className="containers">
+      {/* <CreateComplete /> */}
       <p className="titles">Create New Shop</p>
       {/* Shop Info */}
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <div className="create-input">
             <StorefrontRoundedIcon className="create-input-icon" />
             <div>
@@ -91,7 +94,7 @@ function ShopCreate() {
           </div>
         </Grid>
 
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <div className="create-input">
             <LocalPhoneRoundedIcon className="create-input-icon" />
             <div>
@@ -110,7 +113,7 @@ function ShopCreate() {
 
       {/* Package Plan */}
       <p className="title">Package Plan</p>
-      <Grid container spacing={2}>
+      {/* <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <div
             className={
@@ -153,11 +156,28 @@ function ShopCreate() {
             </span>
           </div>
         </Grid>
-      </Grid>
+      </Grid> */}
+      <div className="create-input">
+        <br />
+        <input
+          type="text"
+          placeholder="Enter the susbscription Timeline"
+          ref={phoneref}
+          required
+          style={{ width: "50%", padding: "20px" }}
+        />
+      </div>
 
       {/* Button */}
       <div style={{ marginTop: "50px", textAlign: "end" }}>
-        <button className="create-btn cancel">Cancel</button>
+        <button
+          className="create-btn cancel"
+          onClick={() => {
+            navigate("/admindashboard");
+          }}
+        >
+          Cancel
+        </button>
         <button className="create-btn create" onClick={handleSubmit}>
           Create Shop
         </button>

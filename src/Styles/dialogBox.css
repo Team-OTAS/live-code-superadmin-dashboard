@@ -25,25 +25,23 @@
 }
 
 .btnContainer {
-  text-align: center;
+  text-align: left;
 }
 
 .input-field-label {
   display: flex;
-  align-items: center;
+  align-items: left;
 }
 
-.textheader {
-  text-align: center;
+.texthead {
+  text-align: left;
   color: #4d3f3f;
   font-size: 24px;
   font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  word-wrap: break-word;
+  font-weight: 200;
 }
 
-.textbody {
-  text-align: center;
+.textBody {
   color: #4d3f3f;
   font-size: 15px;
   font-family: "Poppins", sans-serif;

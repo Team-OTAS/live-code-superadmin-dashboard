@@ -167,10 +167,10 @@ function ShopDetails() {
               >
                 Cancel
               </button>
-              <button className="create-btn create">Create Shop</button>
+              <button className="create-btn create">Update Plan</button>
             </div>
           </div>
-          <Grid container spacing={2}>
+          {/* <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
               <div
                 className={
@@ -222,7 +222,16 @@ function ShopDetails() {
                 </span>
               </div>
             </Grid>
-          </Grid>
+          </Grid> */}
+          <div className="create-input">
+            <br />
+            <input
+              type="text"
+              placeholder="Enter the susbscription Timeline"
+              required
+              style={{ width: "50%", padding: "20px" }}
+            />
+          </div>
         </div>
       )}
 

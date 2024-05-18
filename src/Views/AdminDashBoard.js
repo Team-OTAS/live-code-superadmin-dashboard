@@ -26,18 +26,12 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function AdminDashBoard() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.modal);
   const alert = useSelector((state) => state.alert);
   console.log("alert", alert.isOpen);
   console.log(isModalOpen.modalA);
 
-  const handleClickOpen = () => {
-    dispatch(openModalA());
-  };
-  const handleClose = () => {
-    dispatch(closeModalA());
-  };
   return (
     <div>
       <div className="dashboardContainer">
@@ -50,17 +44,6 @@ export default function AdminDashBoard() {
             <Route path="/create" element={<ShopCreate />} />
             <Route path="/details/:id" element={<ShopDetails />} />
           </Routes>
-
-          {/* <ShopCreate /> */}
-          {/* {alert.isOpen && <AlertMessage />}
-          {}
-          <BootstrapDialog
-            onClose={handleClose}
-            aria-labelledby="customized-dialog-title"
-            open={isModalOpen.modalA.isOpen}
-          >
-            {isModalOpen.modalB.isOpen ? <CreateShop /> : <CreateComplete />}
-          </BootstrapDialog> */}
         </div>
       </div>
     </div>

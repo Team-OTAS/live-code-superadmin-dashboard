@@ -22,27 +22,28 @@
 }
 
 .btnContainer {
-  text-align: center;
+  text-align: left;
 }
 
 .input-field-label {
   display: flex;
   // justify-content: center;
-  align-items: center;
+  align-items: left;
 }
 
-.textheader {
-  text-align: center;
+.texthead {
+  text-align: left;
   color: $textheaderColor;
   font-size: 24px;
   font-family: $textFont;
-  font-weight: bold;
-  word-wrap: break-word;
+  font-weight: 200;
+  // font-weight: bold;
+  // word-wrap: break-word;
   // margin-top: -10px;
 }
 
-.textbody {
-  text-align: center;
+.textBody {
+  // text-align: center;
   color: $textheaderColor;
   font-size: 15px;
   font-family: $textFont;

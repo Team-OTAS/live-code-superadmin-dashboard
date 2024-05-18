@@ -36,7 +36,7 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <div className="App">
+        <div style={{ overflow: "hidden" }}>
           <Routes>
             <Route path="/" element={<LoginAcc />} />
             <Route path="*" element={<AdminDashBoard />} />

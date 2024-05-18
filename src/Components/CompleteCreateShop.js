@@ -9,6 +9,7 @@ import "./../Styles/dialogBox.css";
 import { useDispatch, useSelector } from "react-redux";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import Swal from "sweetalert2";
 
 export default function CreateComplete() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export default function CreateComplete() {
 
   const handleCopy = async () => {
     const credentialsText = `Username: ${nameref.current.value}\nPassword: ${passwordref.current.value}`;
+    console.log(credentialsText);
     try {
       await navigator.clipboard.writeText(credentialsText);
       setAlert(true);
@@ -35,7 +37,11 @@ export default function CreateComplete() {
       console.error("Unable to copy to clipboard", err);
       dispatch(closeModalB());
       dispatch(closeModalA());
-      alert("Unable to copy to clipboard");
+      Swal.fire({
+        title: "Error",
+        text: "can not copy",
+        timer: 2000,
+      });
     }
   };
 
@@ -64,10 +70,13 @@ export default function CreateComplete() {
       <Box
         sx={{
           p: 5,
-          height: "80vh",
+          height: "50vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "white",
+          marginTop: "30px",
+          borderRadius: "10px",
         }}
       >
         <Grid
@@ -75,10 +84,10 @@ export default function CreateComplete() {
           spacing={2}
           direction="column"
           justifyContent="center"
-          alignItems="center"
+          // backgroundColor="white"
           sx={{ py: { xs: 3, sm: 0 } }}
         >
-          <IconButton
+          {/* <IconButton
             aria-label="close"
             onClick={handleClose}
             sx={{
@@ -89,21 +98,21 @@ export default function CreateComplete() {
             }}
           >
             <CloseIcon />
-          </IconButton>
-          <Grid item xs={2}>
-            <p className="textheader">User Shop Has Been Created!</p>
+          </IconButton> */}
+          <Grid item xs={12}>
+            <p className="texthead">User Shop Has Been Created Successfully!</p>
           </Grid>
           <Grid item xs={12}>
             <Box component="div" sx={{ display: { xs: "none", sm: "block" } }}>
-              <p className="textbody">
+              <p className="textBody">
                 The temporary user name & password has been created.
                 <br />
-                You can copy & paste this info and send to the user to <br />
-                login to the account.
+                You can copy & paste this info and send to the user to login to
+                the account.
               </p>
             </Box>
             <Box component="div" sx={{ display: { xs: "block", sm: "none" } }}>
-              <p className="textbody">
+              <p className="textBody">
                 The temporary user name & password has been created.
                 <br />
                 You can copy & paste this info and send to the user to <br />
@@ -121,7 +130,7 @@ export default function CreateComplete() {
                 "& .MuiTextField-root": { m: 1, width: "30ch" },
               }}
             >
-              <div className="input-field">
+              <div className="">
                 <TextField
                   id="outlined-error-helper-text"
                   label={
@@ -138,7 +147,7 @@ export default function CreateComplete() {
                   }}
                 />
               </div>
-              <div className="input-field">
+              <div>
                 <TextField
                   id="outlined-error-helper-text"
                   label={

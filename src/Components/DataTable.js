@@ -14,6 +14,7 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import LinearProgress from "@mui/material/LinearProgress";
 
 function CustomToolbar() {
   return (
@@ -32,7 +33,7 @@ const DataTable = () => {
 
   const columns = [
     { field: "no", headerName: "No", width: 50 },
-    { field: "name", headerName: "Shop Name", width: 300 },
+    { field: "name", headerName: "Shop Name", width: 200 },
     { field: "user_name", headerName: "User Name", width: 150 },
     { field: "phone", headerName: "Contact Num", width: 200 },
 
@@ -44,27 +45,41 @@ const DataTable = () => {
         return (
           <Box
             sx={{
-              color:
-                Math.floor(
-                  (new Date(cellValues.value) - new Date()) /
-                    (1000 * 60 * 60 * 24)
-                ) > 100
-                  ? "#354E8E"
-                  : "#E81609",
-              padding: "10px 20px",
-              borderRadius: "8px",
-              fontSize: 12,
+              color: "#000",
+              borderRadius: "3px",
+              fontSize: "12px",
+              paddingRight: "10px",
               width: "100%",
               textAlign: "left",
               overflow: "hidden",
+              background: "#F2F3F7",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            {new Date(cellValues.value).toLocaleDateString()}
-            <br />(
-            {Math.floor(
-              (new Date(cellValues.value) - new Date()) / (1000 * 60 * 60 * 24)
-            )}{" "}
-            <span>Days Left</span>)
+            <Box
+              className="color-box"
+              sx={{
+                background:
+                  Math.floor(
+                    (new Date(cellValues.value) - new Date()) /
+                      (1000 * 60 * 60 * 24)
+                  ) > 100
+                    ? "#6EC531"
+                    : "#E81609",
+              }}
+            >
+              p
+            </Box>
+            <div>
+              {new Date(cellValues.value).toLocaleDateString()}(
+              {Math.floor(
+                (new Date(cellValues.value) - new Date()) /
+                  (1000 * 60 * 60 * 24)
+              )}{" "}
+              <span>Days Left</span>)
+            </div>
           </Box>
         );
       },
@@ -78,8 +93,9 @@ const DataTable = () => {
           sx={{
             background: "#354E8E",
             color: "#fff",
-            padding: "10px 20px",
-            borderRadius: "10px",
+            padding: "5px 15px",
+            fontSize: "12px",
+            borderRadius: "5px",
             "&:hover": {
               backgroundColor: "#fff",
               color: "#354E8E",
@@ -117,19 +133,12 @@ const DataTable = () => {
           ...item,
         }));
         setApiData(tabledata);
-        console.log("Work");
+        // console.log("Work");
       })
       .catch((error) => {
         console.error("Error fetching API data:", error);
       });
   }, [isModalOpen.modalA]);
-  // console.log(apiData);
-
-  // const handleRowClick = (params) => {
-  //   // Access the clicked row data using params.row
-  //   console.log("Row clicked:", params.row);
-  //   // You can perform additional actions based on the clicked row data
-  // };
 
   return (
     <div style={{ height: 450, width: "100%" }}>
@@ -150,11 +159,10 @@ const DataTable = () => {
         rows={apiData}
         columns={columns}
         pageSize={12}
-        // checkboxSelection
-        // onRowClick={handleRowClick}
-        // onCellClick={false}
+        loading={apiData.length === 0}
         components={{
           Toolbar: CustomToolbar,
+          loadingOverlay: LinearProgress,
         }}
         // onSelectionModelChange={({ selectionModel }) => {
         //   const rowIds = selectionModel.map((rowId) =>
