@@ -8,8 +8,8 @@ import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
 import "./../Styles/auth.css";
 import { useNavigate } from "react-router-dom";
 import { setAuthToken } from "./../api/axios";
-import fetchXsrfToken from "../api/auth";
 import axios from "./../api/axios";
+import Swal from "sweetalert2";
 export default function LoginAcc() {
   const navigate = useNavigate();
 
@@ -17,28 +17,40 @@ export default function LoginAcc() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    const xsrfToken = await fetchXsrfToken();
-    console.log("XSRF Token from auth.js", xsrfToken);
-    const response = await axios.post(
-      "/api/auth/login",
-      {
+    try {
+      const response = await axios.post("/api/auth/login", {
         user_name,
         password,
-      },
-      {
-        withCredentials: true,
-        headers: {
-          "X-XSRF-TOKEN": xsrfToken,
-        },
+      });
+      // console.log(response.data.data.user_type.id);
+      if (response.data.data.user_type.id === 1) {
+        const authToken = response.data.data.token;
+        setAuthToken(authToken);
+        localStorage.setItem("token", authToken);
+        navigate("/admindashboard");
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You are not authorized to access this page",
+        });
       }
-    );
 
-    if (response.status === 200) {
-      const authToken = response.data.data.token;
-      setAuthToken(authToken);
-      localStorage.setItem("token", authToken);
-      navigate("/admindashboard");
-      // const authToken = response.data.data.token;
+      // navigate("/admindashboard");
+    } catch (error) {
+      if (error.response) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
+      }
     }
   };
 

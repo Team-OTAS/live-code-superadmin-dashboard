@@ -4,11 +4,10 @@
 @import url("https://fonts.cdnfonts.com/css/garet");
 .DrawContainer {
   width: 230px;
-  height: 150px;
+  height: 500px;
   border-radius: 18px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
   flex-direction: column;
 }
 

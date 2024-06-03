@@ -15,7 +15,7 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
 )}`;
 // console.log(token);
 axios.defaults.headers.post["Content-Type"] = "application/json";
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 
 export { setAuthToken };

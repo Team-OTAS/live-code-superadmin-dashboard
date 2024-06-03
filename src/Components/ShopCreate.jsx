@@ -20,14 +20,14 @@ function ShopCreate() {
   const [loading, setLoading] = useState(false);
   const nameref = useRef();
   const phoneref = useRef();
-  const [packageid, setPackage] = useState(1);
+  const packageref = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       name: nameref.current.value,
       phone: phoneref.current.value,
-      subscription_plan_id: packageid,
+      expire_at: packageref.current.value,
     };
     submitData(data);
     setLoading(true);
@@ -113,56 +113,13 @@ function ShopCreate() {
 
       {/* Package Plan */}
       <p className="title">Package Plan</p>
-      {/* <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <div
-            className={
-              packageid === 1 ? "PackegeContainer active" : "PackegeContainer"
-            }
-            onClick={() => setPackage(1)}
-          >
-            <PanoramaFishEyeOutlinedIcon className="circles" />
-            <p>Easy Shop Package </p>
-            <span>
-              Please add your content here. Keep it short and simple. And smile
-            </span>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <div
-            className={
-              packageid === 2 ? "PackegeContainer active" : "PackegeContainer"
-            }
-            onClick={() => setPackage(2)}
-          >
-            <PanoramaFishEyeOutlinedIcon className="circles" />
-            <p>Normal User Package</p>
-            <span>
-              Please add your content here. Keep it short and simple. And smile
-            </span>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <div
-            className={
-              packageid === 3 ? "PackegeContainer active" : "PackegeContainer"
-            }
-            onClick={() => setPackage(3)}
-          >
-            <PanoramaFishEyeOutlinedIcon className="circles" />
-            <p>Advence Shop Package</p>
-            <span>
-              Please add your content here. Keep it short and simple. And smile
-            </span>
-          </div>
-        </Grid>
-      </Grid> */}
+
       <div className="create-input">
         <br />
         <input
           type="text"
           placeholder="Enter the susbscription Timeline"
-          ref={phoneref}
+          ref={packageref}
           required
           style={{ width: "50%", padding: "20px" }}
         />
