@@ -64,5 +64,5 @@ jobs:
           username: ${{ secrets.DO_STAGING_SERVER_USER }}
           key: ${{ secrets.DO_STAGING_SERVER_SSH_KEY }}
           script: |
-            tar xzf /var/www/html/superadmin-dashboard-artifacts/admin-dashboard.tar.gz -C /var/www/html/livecode-superadmin-dashboard
+            tar xzf /var/www/html/superadmin-dashboard-artifacts/superadmin-dashboard.tar.gz -C /var/www/html/livecode-superadmin-dashboard
             rm /var/www/html/superadmin-dashboard-artifacts/superadmin-dashboard.tar.gz
