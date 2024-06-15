@@ -1,17 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./../Styles/detailbox.css";
 import { Grid } from "@mui/material";
-import { openModalB } from "./../redux/feature/modalSlice";
-import { resdata } from "../redux/feature/randomUserSlice";
 import axios from "./../api/axios";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
 import UpgradeRoundedIcon from "@mui/icons-material/UpgradeRounded";
 import Swal from "sweetalert2";
-import Loading from "./Loading";
-import { useDispatch, useSelector } from "react-redux";
-import PanoramaFishEyeOutlinedIcon from "@mui/icons-material/PanoramaFishEyeOutlined";
-import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { useParams } from "react-router-dom";
 
@@ -20,6 +14,7 @@ function ShopDetails() {
   const [shop, setShop] = useState();
   const [packageid, setPackage] = useState(1);
   const [show, setShow] = useState(false);
+  console.log(shop);
 
   const getshop = async () => {
     try {
@@ -56,7 +51,7 @@ function ShopDetails() {
 
   return (
     <div className="containers">
-      <div
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -74,7 +69,7 @@ function ShopDetails() {
           <span>Update Plan</span>
           <UpgradeRoundedIcon className="update-icon" />
         </button>
-      </div>
+      </div> */}
 
       {/* Shop Info */}
       {shop && (
@@ -84,8 +79,9 @@ function ShopDetails() {
               <div className="detail-box">
                 <div>
                   <img
-                    src={`https://api.livecodemm.com${shop.logo}`}
+                    src={`${process.env.REACT_APP_API_URL}${shop.logo}`}
                     alt="shoplogo"
+                    style={{ width: "50px", height: "50px" }}
                   />
                 </div>
                 <div className="detail-box-content">
@@ -110,20 +106,6 @@ function ShopDetails() {
             <Grid item xs={12} md={4}>
               <div className="detail-box">
                 <div>
-                  <CardMembershipIcon className="detail-input-icon" />
-                </div>
-                <div className="detail-box-content">
-                  <p>Package Type</p>
-                  <span>{shop.subscription_plan.name}</span>
-                </div>
-              </div>
-            </Grid>
-          </Grid>
-
-          <Grid container sx={{ marginTop: "50px" }}>
-            <Grid item xs={12} md={4}>
-              <div className="detail-box">
-                <div>
                   <HomeRoundedIcon className="detail-input-icon" />
                 </div>
                 <div className="detail-box-content">
@@ -133,7 +115,7 @@ function ShopDetails() {
               </div>
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} sx={{ marginTop: "40px" }}>
               <div className="detail-box">
                 <div>
                   <LocalPhoneRoundedIcon className="detail-input-icon" />
@@ -170,59 +152,7 @@ function ShopDetails() {
               <button className="create-btn create">Update Plan</button>
             </div>
           </div>
-          {/* <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
-              <div
-                className={
-                  packageid === 1
-                    ? "PackegeContainer active"
-                    : "PackegeContainer"
-                }
-                onClick={() => setPackage(1)}
-              >
-                <PanoramaFishEyeOutlinedIcon className="circles" />
-                <p>Easy Shop Package </p>
-                <span>
-                  Please add your content here. Keep it short and simple. And
-                  smile
-                </span>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <div
-                className={
-                  packageid === 2
-                    ? "PackegeContainer active"
-                    : "PackegeContainer"
-                }
-                onClick={() => setPackage(2)}
-              >
-                <PanoramaFishEyeOutlinedIcon className="circles" />
-                <p>Normal User Package</p>
-                <span>
-                  Please add your content here. Keep it short and simple. And
-                  smile
-                </span>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <div
-                className={
-                  packageid === 3
-                    ? "PackegeContainer active"
-                    : "PackegeContainer"
-                }
-                onClick={() => setPackage(3)}
-              >
-                <PanoramaFishEyeOutlinedIcon className="circles" />
-                <p>Advence Shop Package</p>
-                <span>
-                  Please add your content here. Keep it short and simple. And
-                  smile
-                </span>
-              </div>
-            </Grid>
-          </Grid> */}
+
           <div className="create-input">
             <br />
             <input
