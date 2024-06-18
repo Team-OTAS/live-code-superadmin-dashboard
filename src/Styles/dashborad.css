@@ -1,0 +1,56 @@
+/* Poppin */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+/* Garet */
+@import url("https://fonts.cdnfonts.com/css/garet");
+.dashboardContainer {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  background-color: #f2f3f7;
+}
+
+.btnText {
+  padding-left: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.dashboardContent {
+  width: 75vw;
+  padding: 0 20px;
+}
+
+.barContainer {
+  width: inherit;
+  display: block;
+  text-align: right;
+}
+
+.MuiDataGrid-columnHeaders .MuiCheckbox-root {
+  border-radius: 0;
+  color: white;
+}
+
+.MuiDataGrid-columnHeaders .MuiCheckbox-root.Mui-checked {
+  color: white;
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell {
+  font-size: 14px; /* Adjust the font size as needed */
+  font-family: "Poppins", sans-serif;
+  background: white;
+  padding: 20px;
+}
+
+.MuiDataGrid-columnHeaders {
+  background-color: #354e8e;
+  color: white;
+  font-size: 14px; /* Adjust the font size as needed */
+  font-family: "Poppins", sans-serif;
+}
+
+.color-box {
+  height: 100%;
+  padding: 10px 1px;
+  color: transparent;
+}/*# sourceMappingURL=dashborad.css.map */

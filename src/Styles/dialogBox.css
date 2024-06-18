@@ -1,0 +1,57 @@
+/* Poppin */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+/* Garet */
+@import url("https://fonts.cdnfonts.com/css/garet");
+.dialog-box {
+  width: 570px;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.8);
+}
+
+.formHeader {
+  margin-bottom: 30px;
+  font-family: "Poppins", sans-serif;
+  color: #4d3f3f;
+}
+
+.package-form-container {
+  width: 500px;
+  border: 1px solid black;
+  padding: 10px 20px 30px 20px;
+  border-radius: 10px;
+}
+
+.package {
+  display: flex;
+}
+
+.btnContainer {
+  text-align: left;
+}
+
+.input-field-label {
+  display: flex;
+  align-items: left;
+}
+
+.texthead {
+  text-align: left;
+  color: #4d3f3f;
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+}
+
+.textBody {
+  color: #4d3f3f;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  margin-top: -25px;
+}
+
+.clicked {
+  background-color: black;
+}
+
+.notClicked {
+  background-color: red;
+}/*# sourceMappingURL=dialogBox.css.map */
