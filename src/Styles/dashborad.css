@@ -24,6 +24,7 @@
   width: inherit;
   display: block;
   text-align: right;
+  margin-bottom: 10px;
 }
 
 .MuiDataGrid-columnHeaders .MuiCheckbox-root {
