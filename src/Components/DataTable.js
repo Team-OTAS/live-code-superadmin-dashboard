@@ -4,12 +4,10 @@ import {
   GridToolbarColumnsButton,
   GridToolbarContainer,
   GridToolbarQuickFilter,
-  // GridToolbarFilterButton,
 } from "@mui/x-data-grid";
 import axios from "./../api/axios";
 import "./../Styles/dashborad.css";
 import { Box, Button } from "@mui/material";
-// import PreviewOutlinedIcon from "@mui/icons-material/PreviewOutlined";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
 import { useSelector } from "react-redux";
@@ -19,11 +17,10 @@ import LinearProgress from "@mui/material/LinearProgress";
 function CustomToolbar() {
   return (
     <GridToolbarContainer
-      sx={{ display: "flex", justifyContent: "space-between" }}
+      sx={{ display: "flex", justifyContent: "space-between", height: "100px" }}
     >
       <GridToolbarColumnsButton />
       <GridToolbarQuickFilter />
-      {/* <GridToolbarFilterButton /> */}
     </GridToolbarContainer>
   );
 }
