@@ -23,21 +23,6 @@ export default function Navbar() {
           </NavLink>
         )}
       </div>
-      {/* <p className="navTitle">{`Shop Account Management  ${
-        location.pathname === "> /details" ? "Detail" : ""
-      } ${location.pathname === "> /create" ? "Add New Shop" : ""}`}</p> */}
-      {/* <AppBar position="static" color="secondary" sx={{ p: "10px" }}>
-        <Toolbar>
-          <img src={LiveCodeLogo} alt="LiveCodeLogo" />
-          <Typography component="div" sx={{ flexGrow: 1 }}>
-            <p className="navTitle">Shop Accounts Management</p>
-          </Typography>
-          <Button size="large" color="primary" variant="contained">
-            <BugReportOutlinedIcon />
-            <span className="btnText">Bug Report To Developer</span>
-          </Button>
-        </Toolbar>
-      </AppBar> */}
     </Box>
   );
 }

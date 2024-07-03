@@ -5,11 +5,12 @@ import TextField from "@mui/material/TextField";
 import { Box, Button } from "@mui/material";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
-import "./../Styles/auth.css";
 import { useNavigate } from "react-router-dom";
 import { setAuthToken } from "./../api/axios";
 import axios from "./../api/axios";
 import Swal from "sweetalert2";
+import "./../Styles/auth.css";
+
 export default function LoginAcc() {
   const navigate = useNavigate();
 
@@ -77,7 +78,7 @@ export default function LoginAcc() {
             <img src={LiveCodeLogo} alt="live_code_logo" className="logo" />
           </Grid>
           <Grid item xs={2}>
-            <p className="textheader">Login to Live Code</p>
+            <p className="textheader">Login to Live Code SuperAdmin</p>
           </Grid>
           <Grid item xs={12}>
             <Box component="div" sx={{ display: { xs: "none", sm: "block" } }}>
