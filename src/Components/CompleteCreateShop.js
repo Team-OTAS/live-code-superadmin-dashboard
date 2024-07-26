@@ -25,7 +25,7 @@ export default function CreateComplete() {
 
   const handleCopy = async () => {
     const credentialsText = `Username: ${nameref.current.value}\nPassword: ${passwordref.current.value}`;
-    console.log(credentialsText);
+    // console.log(credentialsText);
     try {
       await navigator.clipboard.writeText(credentialsText);
       setAlert(true);
