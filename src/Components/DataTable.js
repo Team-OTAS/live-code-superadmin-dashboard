@@ -18,6 +18,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 // api
 import shopsDelete from "../redux/feature/shopDelete";
 import Swal from "sweetalert2";
+import confirmModel from "./confirmModel";
 
 function CustomToolbar() {
   return (
@@ -34,7 +35,6 @@ const DataTable = () => {
   const navigate = useNavigate();
   const deleteHandleClick = async (id) => {
     const res = await shopsDelete(id);
-    // console.log(res);
     if (res.status === 204) {
       Swal.fire({
         icon: "success",
@@ -43,6 +43,10 @@ const DataTable = () => {
       });
       getAllShops();
     }
+  };
+
+  const onDeleteClick = (id) => {
+    confirmModel(() => deleteHandleClick(id));
   };
 
   const handleButtonClick = (id) => {
@@ -148,7 +152,7 @@ const DataTable = () => {
             }}
             variant="filled"
             onClick={() => {
-              deleteHandleClick(params.row.id);
+              onDeleteClick(params.row.id);
             }}
           >
             <DeleteOutlineIcon />
