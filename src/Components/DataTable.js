@@ -13,6 +13,11 @@ import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import LinearProgress from "@mui/material/LinearProgress";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+
+// api
+import shopsDelete from "../redux/feature/shopDelete";
+import Swal from "sweetalert2";
 
 function CustomToolbar() {
   return (
@@ -27,12 +32,31 @@ function CustomToolbar() {
 
 const DataTable = () => {
   const navigate = useNavigate();
+  const deleteHandleClick = async (id) => {
+    const res = await shopsDelete(id);
+    // console.log(res);
+    if (res.status === 204) {
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Shop deleted successfully",
+      });
+      getAllShops();
+    }
+  };
+
+  const handleButtonClick = (id) => {
+    navigate("/details/" + id);
+  };
+
+  const isModalOpen = useSelector((state) => state.modal);
+  const [apiData, setApiData] = useState([]);
 
   const columns = [
     { field: "no", headerName: "No", width: 50 },
     { field: "name", headerName: "Shop Name", width: 200 },
     { field: "user_name", headerName: "User Name", width: 150 },
-    { field: "phone", headerName: "Contact Num", width: 200 },
+    { field: "phone", headerName: "Ph Number", width: 150 },
 
     {
       field: "expire_at",
@@ -84,45 +108,60 @@ const DataTable = () => {
     {
       field: "",
       headerName: "Actions",
-      width: 200,
+      width: 250,
       renderCell: (params) => (
-        <Button
-          sx={{
-            background: "#354E8E",
-            color: "#fff",
-            padding: "5px 15px",
-            fontSize: "12px",
-            borderRadius: "5px",
-            "&:hover": {
-              backgroundColor: "#fff",
-              color: "#354E8E",
-              fontWeight: "bold",
-              border: "1px solid #354E8E",
-            },
-          }}
-          variant="filled"
-          onClick={() => handleButtonClick(params.row.id)}
-        >
-          <StorefrontIcon sx={{ marginRight: "5px" }} />
-          Shops Details
-        </Button>
+        <div>
+          <Button
+            sx={{
+              background: "#354E8E",
+              color: "#fff",
+              padding: "5px 15px",
+              fontSize: "12px",
+              borderRadius: "5px",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#354E8E",
+                fontWeight: "bold",
+                border: "1px solid #354E8E",
+              },
+            }}
+            variant="filled"
+            onClick={() => handleButtonClick(params.row.id)}
+          >
+            <StorefrontIcon sx={{ marginRight: "5px" }} />
+            Details
+          </Button>
+          <Button
+            sx={{
+              background: "red",
+              color: "#fff",
+              marginLeft: "10px",
+              padding: "5px 15px",
+              fontSize: "12px",
+              borderRadius: "5px",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#354E8E",
+                fontWeight: "bold",
+                border: "1px solid #354E8E",
+              },
+            }}
+            variant="filled"
+            onClick={() => {
+              deleteHandleClick(params.row.id);
+            }}
+          >
+            <DeleteOutlineIcon />
+          </Button>
+        </div>
       ),
     },
   ];
 
-  const handleButtonClick = (id) => {
-    navigate("/details/" + id);
-  };
-
-  const isModalOpen = useSelector((state) => state.modal);
-  console.log("modal", isModalOpen.modalA);
-  const [apiData, setApiData] = useState([]);
-
-  useEffect(() => {
-    // Fetch API data
-    axios
-      .get("/api/shops")
-      .then((response) => {
+  const getAllShops = async () => {
+    // console.log("wrk");
+    try {
+      await axios.get("/api/shops").then((response) => {
         // Handle the API response here
         const data = response.data;
         const tabledata = data.data.map((item, index) => ({
@@ -130,12 +169,17 @@ const DataTable = () => {
           ...item,
         }));
         setApiData(tabledata);
-        // console.log("Work");
-      })
-      .catch((error) => {
-        console.error("Error fetching API data:", error);
+        // console.log("tabledata");
       });
-  }, [isModalOpen.modalA]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllShops();
+    // Fetch API data
+  }, [isModalOpen.modalA, setApiData]);
 
   return (
     <div style={{ height: 450, width: "100%" }}>
@@ -161,16 +205,6 @@ const DataTable = () => {
           Toolbar: CustomToolbar,
           loadingOverlay: LinearProgress,
         }}
-        // onSelectionModelChange={({ selectionModel }) => {
-        //   const rowIds = selectionModel.map((rowId) =>
-        //     parseInt(String(rowId), 10)
-        //   );
-        //   const rowsToDelete = tableData.filter((row) =>
-        //     rowIds.includes(row.id)
-        //   );
-        //   setDeletedRows(rowsToDelete);
-        //   console.log(deletedRows);
-        // }}
       />
     </div>
   );

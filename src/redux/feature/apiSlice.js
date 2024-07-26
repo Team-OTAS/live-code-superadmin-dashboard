@@ -24,10 +24,6 @@ export const createData = createAsyncThunk(
 // });
 
 // Create async thunk for deleting data
-// export const deleteData = createAsyncThunk('data/deleteData', async (id) => {
-//   await axios.delete(`${apiUrl}/data/${id}`);
-//   return id;
-// });
 
 const dataSlice = createSlice({
   name: "data",

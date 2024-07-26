@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import Navbar from "./../Components/Navbar";
 import Drawer from "../Components/Drawer";
 import DataTable from "../Components/DataTable";
@@ -10,10 +9,6 @@ import "./../Styles/dashborad.css";
 
 export default function AdminDashBoard() {
   // const dispatch = useDispatch();
-  const isModalOpen = useSelector((state) => state.modal);
-  const alert = useSelector((state) => state.alert);
-  console.log("alert", alert.isOpen);
-  console.log(isModalOpen.modalA);
 
   return (
     <div>
