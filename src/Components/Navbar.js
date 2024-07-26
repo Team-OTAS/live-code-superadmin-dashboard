@@ -5,7 +5,7 @@ import "./../Styles/navbar.css";
 
 export default function Navbar() {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <div>
